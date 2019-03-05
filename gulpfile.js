@@ -44,7 +44,7 @@ var AUTOPREFIXER_BROWSERS = [
 // Task 'style' : Transform SCSS to CSS, Minify CSS, Add Sourcemaps, Correct Line ending
 //============================================================================
 gulp.task('style', function () {
-  // Path to main .scss file ('gulp').
+  // Path to main.scss file ('gulp').
   return gulp.src( './src/assets/sass/main.scss' )
   // Initialize the sourcemap ('gulp-sourcemaps').
   .pipe( sourcemaps.init() )
@@ -83,6 +83,28 @@ gulp.task('style', function () {
   .pipe( gulp.dest( './assets/css/' ) )
   // Reloads browser if main.min.css is enqueued ('browser-sync')
   .pipe(browserSync.stream());
+});
+
+// Task 'style-editor' : Transform SCSS to CSS, Correct Line ending
+//============================================================================
+gulp.task('style-editor', function () {
+  // Path to style-editor.scss file ('gulp').
+  return gulp.src( './src/assets/sass/style-editor.scss' )
+  // Compile SASS to CSS ('gulp-sass').
+  .pipe(sass({
+    outputStyle: 'expanded',
+    //outputStyle: 'compressed',
+    //outputStyle: 'nested',
+    //outputStyle: 'compact',
+    //indentType: 'tab',
+    //indentWidth: '2'
+  }).on('error', sass.logError))
+  // Add vendor prefixes ('gulp-autoprefixer').
+  .pipe( autoprefixer( AUTOPREFIXER_BROWSERS ) )
+  // Consistent Line Endings for non UNIX systems ('gulp-line-ending-corrector')
+  .pipe( lec() )
+  // Save the processed to folder css ('gulp').
+  .pipe( gulp.dest( './assets/css/' ) );
 });
 
 // TASK 'images' : Minifies PNG, JPEG, GIF and SVG images.
@@ -150,7 +172,7 @@ gulp.task('js', ['appcustomJS', 'addotherJS']);
 
 // TASK BUILD : Generate the assets folder in theme.
 //==================================================
-gulp.task('build', ['style', 'js', 'images']);
+gulp.task('build', ['style', 'style-editor', 'js', 'images']);
 
 // TASK WATCH : Watch for file changes during development.
 //========================================================
@@ -214,6 +236,8 @@ gulp.task( 'translate', function () {
  * 5-Individuals Tasks if needed
  * [gulp style] : Generates main.css and main.min.css in assets\css;
  *   By default main.css is called in functions.php to use sourcemaps, make changes if main.min.css is wanted
+ *
+ * [gulp style-editor] : Generates style-editor.css in assets\css;
  *
  * [gulp js] : Generates appcustom.js and appcustom.min.js in theme and minifies the other JS files.
  *   By default appcustom.min.js is called in functions.php, make changes if appcustom.js is wanted.

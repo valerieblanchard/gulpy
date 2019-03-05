@@ -1,0 +1,52 @@
+// Customize some classes used with new Editor
+// These are exemples, make css your own !
+// Helpfull Developer's Guide from Bill Erickson : https://www.billerickson.net/building-a-gutenberg-website/
+
+// Alignwide and alignfull
+// This is usefull when theme allows to create pages without Sidebar.
+.alignwide {
+  margin-left: calc(25% - 25vw); // Stretch the half gap between the browser edge and the content.
+  margin-right: calc(25% - (25vw - 12px) ); // Exclude the width of vertical scrollbar wich is part of the whole screen width.
+  // can also fix this adding overflow: hidden on the page-width element further up the HTML tree.
+  max-width: 100vw;
+	width: 100vw;
+}
+.alignfull {
+  margin: 30px calc(50% - 50vw); // Calculate 50% of the container's width and substract from it 50% of the viewport width => negative margin that pulls the element to the edges of the screen.
+  margin-right: calc(50% - (50vw - 12px) );
+  max-width: 100vw;
+  width: 100vw;
+}
+// If your site use Sidebar, you can either limit the full/wide alignment styles to pages with .full-width-content body class
+// Many way to support Wide images in Gutenberg : Other methods  https://codepen.io/ahmadawais/pen/avBwBz  http://moc.co/2018/02/gutenberg-and-themes/ 
+
+// Font Sizes (see variables-site/_typography.scss)
+.has-small-font-size { 
+  font-size: $font__size-sm;
+}
+.has-regular-font-size { 
+  font-size: $font__size-rg;
+}
+.has-large-font-size { 
+  font-size: $font__size-lg;
+}
+
+// Color Palette (see variables-site/_colors.scss)
+// For text : .has-XXX-color and background : .has-XXX-background-color
+// An alternative approach is to use generic terms for the colors like primary, secondary, and tertiary.
+$colors: (
+  'green' : $color__green,
+	'blue' : $color__blue,
+  'light-green' : $color__light-green,
+	'yellow' : $color__yellow,
+	'orange' : $color__orange,
+);
+
+@each $name, $color in $colors {
+	.has-#{$name}-color {
+		color: $color;
+	}
+	.has-#{$name}-background-color {
+		background-color: $color;
+	}
+}

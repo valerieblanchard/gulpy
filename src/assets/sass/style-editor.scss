@@ -1,0 +1,18 @@
+/*
+Gulpy Editor Styles
+*/
+
+/* To make the editing experience more what-you-see-is-what-you-get,
+ you can add Gutenberg editor styles,
+ it's possible because of add_theme_support( 'editor-styles' );
+ You should only load styles relevant to the editor.
+*/
+/** === Includes === */
+
+@import "sass/variables-site/variables-site";
+@import "sass/mixins/mixins-master";
+
+/* Advice :
+You can watch on github twentynineteen/style-editor.scss to look for what is good to add here.
+https://github.com/WordPress/twentynineteen/blob/master/style-editor.scss
+*/
