@@ -81,6 +81,90 @@ if ( ! function_exists( 'gulpy_setup' ) ) :
 			'flex-width'  => true,
 			'flex-height' => true,
 		) );
+
+		/**
+		 * New Editor support (Gutenberg)
+		 * 
+		 * @link https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/
+		 */
+		// Add support for Block Styles (use default style on front).
+		add_theme_support( 'wp-block-styles' );
+
+		// Add support for responsive embedded content.
+		add_theme_support( 'responsive-embeds' );
+
+		// Add support for full and wide align images (need some css to design this capacity with classes : .alignwide and .alignfull).
+		// See file src/sass/blocks/_blocks.scss
+		add_theme_support( 'align-wide' );
+
+		// Add support for editor styles (need to create a file in src/assets/sass/style-editor.scss Gulp will generate assets/css/style-editor.css).
+		// https://wordpress.org/gutenberg/handbook/designers-developers/developers/themes/theme-support/#editor-styles
+		add_theme_support( 'editor-styles' );
+		// Add support for dark Theme
+		add_theme_support( 'dark-editor-style' );
+		// Enqueue editor styles.
+		add_editor_style( 'assets/css/style-editor.css' );
+
+		// Disable custom font sizes
+		add_theme_support( 'disable-custom-font-sizes' );
+
+		// Add custom editor font sizes (need some css classes built like this .has-XXX-font-size so we have for exemple: .has-small-font-size{font-size:12px;} etc ...).
+		// See file src/sass/blocks/_blocks.scss
+		add_theme_support( 'editor-font-sizes', array(
+			array(
+				'name'      => __( 'Small', 'gulpy' ),
+				'shortName' => __( 'S', 'gulpy' ),
+				'size'      => 12,
+				'slug'      => 'small'
+			),
+			array(
+				'name'      => __( 'Regular', 'gulpy' ),
+				'shortName' => __( 'M', 'gulpy' ),
+				'size'      => 16,
+				'slug'      => 'regular'
+			),
+			array(
+				'name'      => __( 'Large', 'gulpy' ),
+				'shortName' => __( 'L', 'gulpy' ),
+				'size'      => 20,
+				'slug'      => 'large'
+			),
+		) );
+
+		// Disable custom colors in block color palettes to use only the following one in editor-color-palette
+		add_theme_support( 'disable-custom-colors' );
+
+		// Editor color palette (need some css classes built like this .has-XXX-color so we have for exemple: .has-blue-color etc ...).
+		add_theme_support(
+			'editor-color-palette',
+			array(
+				array(
+					'name'  => __( 'Blue', 'gulpy' ),
+					'slug'  => 'blue',
+					'color' => '#33658A',
+				),
+				array(
+					'name'  => __( 'Green', 'gulpy' ),
+					'slug'  => 'green',
+					'color' => '#05A8AA',
+				),
+				array(
+					'name'  => __( 'Light Green', 'gulpy' ),
+					'slug'  => 'light-green',
+					'color' => '#B8D5B8',
+				),
+				array(
+					'name'  => __( 'Yellow', 'gulpy' ),
+					'slug'  => 'yellow',
+					'color' => '#F6AE2D',
+				),
+				array(
+					'name'  => __( 'Orange', 'gulpy' ),
+					'slug'  => 'orange',
+					'color' => '#F26419',
+				),
+			)
+		);
 	}
 endif;
 add_action( 'after_setup_theme', 'gulpy_setup' );
