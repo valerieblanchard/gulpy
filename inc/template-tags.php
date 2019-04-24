@@ -126,7 +126,7 @@ if ( ! function_exists( 'gulpy_post_thumbnail' ) ) :
 		if ( is_singular() ) :
 			?>
 
-			<div class="post-thumbnail">
+			<div class="post-thumbnail" itemprop="primaryImageOfPage">
 				<?php the_post_thumbnail(); ?>
 			</div><!-- .post-thumbnail -->
 
