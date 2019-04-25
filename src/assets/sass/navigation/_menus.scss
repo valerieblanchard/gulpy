@@ -1,4 +1,4 @@
-.main-navigation {
+.site-navigation {
 	clear: both;
 	display: block;
 	float: left;
@@ -72,7 +72,7 @@
 
 /* Small menu. */
 .menu-toggle,
-.main-navigation.toggled ul {
+.site-navigation.toggled ul {
 	display: block;
 }
 
@@ -80,7 +80,7 @@
 	.menu-toggle {
 		display: none;
 	}
-	.main-navigation ul {
+	.site-navigation ul {
 		display: block;
 	}
 }
